@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  img_url: MyString
+  name: "Tim"
+  img_url: "https://cdn.discordapp.com/avatars/179624815446065152/fdb09f7d9d019e6ab51dbefa4c4f547b.png"
 
 two:
-  name: MyString
-  img_url: MyString
+  name: "Louis"
+  img_url: "https://cdn.discordapp.com/avatars/195121362371608576/a_c1821a6de434d161a5fb8bde223582b4.gif"
