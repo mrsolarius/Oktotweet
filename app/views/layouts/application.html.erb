@@ -8,9 +8,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'application/favicon' %>
   </head>
 
-  <body class="bg-gray-800">
+  <body class="h-screen flex items-center justify-center bg-dark">
     <%= yield %>
   </body>
 </html>

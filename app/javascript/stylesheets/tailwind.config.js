@@ -5,9 +5,23 @@ module.exports = {
     "./app/javascript/**/*.js",
     "./app/javascript/**/*.vue",
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        dark:'#0E131F',
+        red:{
+          imperial:'#fe0134'
+        },
+        gray:{
+          light:'#D0D3D7'
+        },
+        blue:{
+          space:'#202c5a',
+          slate:'#363A6E'
+        },
+      }
+    },
   },
   variants: {
     extend: {},
