@@ -18,7 +18,7 @@ module.exports = {
         },
         blue:{
           space:'#202c5a',
-          slate:'#363A6E'
+          slate:'#3730A3'
         },
       }
     },

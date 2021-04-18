@@ -9,8 +9,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "stylesheets/application"
 import "@fortawesome/fontawesome-free/css/all"
-
-
+import "jquery"
 Rails.start()
 Turbolinks.start()
+import '@client-side-validations/client-side-validations'
 ActiveStorage.start()

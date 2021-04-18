@@ -93,7 +93,7 @@
             </svg>
           </div>
         </div>
-        <%= form_with(model: @user) do |form| %>
+        <%= form_with model: @user, validate: true do |form| %>
           <% if @user.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -123,8 +123,8 @@
 
         <!--Footer-->
         <div class="flex justify-end pt-2">
-          <button type="reset" onclick="toggleModal()" class="px-4 bg-transparent p-3 rounded-lg text-red-imperial hover:bg-gray-100 hover:text-red-imperial mr-2">Anuler</button>
-          <button type="submit" class="modal-close px-4 bg-red-imperial p-3 rounded-lg text-white hover:bg-blue-space">S'enregistrer</button>
+          <button type="reset" class="modal-close px-4 bg-transparent p-3 rounded-lg text-red-imperial hover:bg-gray-100 hover:text-red-imperial mr-2">Anuler</button>
+          <button type="submit" class="px-4 bg-red-imperial p-3 rounded-lg text-white hover:bg-blue-space">S'enregistrer</button>
         </div>
       </div>
     <% end %>

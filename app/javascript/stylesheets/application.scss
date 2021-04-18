@@ -8,6 +8,7 @@
 
 $primary: #fe0134;
 $secondary: #202c5a;
+$slate:#3730A3;
 $dark:#0E131F;
 
 * {
@@ -132,11 +133,8 @@ textarea,input {
   letter-spacing: .125rem;
   transition: all .25s cubic-bezier(.4, .25, .8, .3);
   &:focus{
-    border-bottom: 2px solid $primary;
-    border-left: 3px solid $primary;
-    label{
-      @apply text-red-imperial;
-    }
+    border-bottom: 2px solid $slate;
+    border-left: 3px solid $slate;
   }
 }
 
@@ -144,9 +142,35 @@ label{
   padding: 0 1rem;
   margin-bottom: -1rem;
   font-weight: bold;
-  @appy text-indigo-300;
+  color:white;
 }
 
+.field_with_errors{
+  & > input, & > textarea{
+    border-bottom: 2px solid $primary;
+    border-left: 3px solid $primary;
+  }
+  & > .error-group{
+    & > label{
+      margin-left: 0px;
+      padding-left: 0.1rem;
+      margin-top: -0.2rem;
+    }
+    & * {
+      color: $primary;
+    }
+    display: flex;
+    margin-top: 0.5rem;
+  }
+}
+
+
+
+.message label{
+  padding: 0 1rem;
+  margin-bottom: -1rem;
+  font-weight: bold;
+}
 /** Custom button **/
 @mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
   transition: $property $duration $ease;
