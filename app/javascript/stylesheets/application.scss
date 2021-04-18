@@ -6,10 +6,25 @@
 @import "tailwindcss/utilities";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
+$primary: #fe0134;
+$secondary: #202c5a;
+$dark:#0E131F;
+
 * {
   @apply text-gray-light;
+  transition: all 330ms ease-out;
 }
 
+/** Modal ! **/
+.modal {
+  transition: opacity 0.25s ease;
+}
+body.modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
+/** Landing page specific class **/
 .oktoTitle{
   width: 100%;
   text-align: center;
@@ -27,17 +42,6 @@
   border-radius: 40%;
 }
 
-h1{
-  @apply text-3xl;
-  @apply text-red-imperial;
-  @apply mb-10;
-  font-family: 'Montserrat', sans-serif;
-  @media only screen and (max-width : 768px) {
-    text-align: center;
-  }
-}
-
-
 .bg-img{
   position: relative;
   background-attachment: fixed;
@@ -49,4 +53,197 @@ h1{
 
 .bg-red-planet{
   background-image: url(/assets/red-planet.png);
+}
+
+/** Profile display **/
+.profileContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 3.5rem;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  @apply bg-blue-space;
+  @media only screen and (max-width : 768px) {
+    flex-direction: column;
+    margin-left: 0rem;
+  }
+}
+
+.profileImage{
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 40%;
+}
+
+.profileMainContainer:hover {
+    .profileImage {
+      border-radius: 50%;
+      box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+      width: 5rem;
+      height: 5rem;
+    }
+
+    .profileContainer {
+      border-radius: 2rem;
+    }
+}
+
+/** Force on this div only **/
+.scrolling{
+  overflow: auto;
+  max-height: 100vh;
+  @media only screen and (max-width : 768px) {
+    max-height: none;
+  }
+}
+
+/** Common element **/
+h1{
+  @apply text-3xl;
+  @apply text-red-imperial;
+  @apply mb-10;
+  font-family: 'Montserrat', sans-serif;
+  @media only screen and (max-width : 768px) {
+    text-align: center;
+  }
+}
+
+/** Forms **/
+form{
+  color: black;
+  border-radius: 1.5rem;
+}
+
+textarea,input {
+  width: 100%;
+  padding: .5rem;
+  border: 0;
+  border-bottom: 2px solid $secondary;
+  border-left: 3px solid $secondary;
+  border-radius: 1rem;
+  outline: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 2rem;
+  letter-spacing: .125rem;
+  transition: all .25s cubic-bezier(.4, .25, .8, .3);
+  &:focus{
+    border-bottom: 2px solid $primary;
+    border-left: 3px solid $primary;
+    label{
+      @apply text-red-imperial;
+    }
+  }
+}
+
+label{
+  padding: 0 1rem;
+  margin-bottom: -1rem;
+  font-weight: bold;
+  @appy text-indigo-300;
+}
+
+/** Custom button **/
+@mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
+  transition: $property $duration $ease;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: 'Montserrat', sans-serif;
+  &.slideButton {
+    width: 15rem;
+    height: auto;
+    @media screen and (max-width : 768px){
+      position: fixed;
+      bottom: 1rem;
+    }
+    .circle {
+      @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+      position: relative;
+      display: block;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+      @apply bg-red-imperial;
+      border-radius: 1.625rem;
+      @media only screen and (max-width : 768px) {
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+      }
+      .icon {
+        @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        color: #fff;
+        &.arrow {
+          @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+          left: 0.625rem;
+          width: 1.125rem;
+          height: 0.125rem;
+          background: none;
+          &::before {
+            position: absolute;
+            content: '';
+            top: -0.25rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+    .button-text {
+      @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.75rem 0;
+      margin: 0 0 0 1.85rem;
+      @apply text-red-imperial;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-transform: uppercase;
+      @media only screen and (max-width : 768px) {
+        text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+  &:hover {
+    .circle {
+      width: 100%;
+      .icon {
+        &.arrow {
+          background: #ffffff;
+          transform: translate(1rem, 0);
+        }
+      }
+    }
+    .button-text {
+      color: #ffffff;
+      @media only screen and (max-width : 768px) {
+        text-shadow: none;
+      }
+    }
+  }
 }
