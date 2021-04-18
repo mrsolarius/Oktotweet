@@ -9,13 +9,11 @@
       </div>
     </div>
   </div>
-  <div class="p-5 md:p-10 lg:p-20 bg-dark md:rounded-l-3xl rounded-t-3xl">
+  <div class="scrolling p-5 md:p-10 lg:p-20 bg-dark md:rounded-l-3xl rounded-t-3xl">
     <p id="notice"><%= notice %></p>
 
     <h1>Se connecter !</h1>
-
-    <div class="scrolling">
-      <div class="grid gap-5 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 grid-cols-1 mt-5">
+    <div class="grid gap-5 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 grid-cols-1 mt-5">
         <% @users.each do |user| %>
         <a href="<%= user_path(user) %>" class="items-center justify-center profileMainContainer">
          <div class="profileContainer">
@@ -26,7 +24,7 @@
                 alt="<%= user.name %>"
                 />
             </div>
-            <div class="flex flex-col ml-4 overflow-hidden whitespace-nowrap">
+            <div class="flex flex-col ml-4 overflow-hidden md:whitespace-nowrap text-center">
               <div class="flex flex-col items-center md:items-start">
                 <h2 class="text-xl font-medium"><%= user.name %></h2>
                 <p class="text-base font-medium text-gray-400"><%= user.bio %></p>
@@ -36,7 +34,6 @@
         </a>
         <% end %>
       </div>
-    </div>
 
     <!--
     <table>
@@ -56,12 +53,13 @@
     </table>
     -->
     <br>
-        <button class="modal-open slideButton" style="width: 12rem">
-          <span class="circle" aria-hidden="true">
-            <span class="icon arrow"></span>
-          </span>
-          <span class="button-text">S'enregistrer</span>
-        </button>
+      <button class="modal-open slideButton" style="width: 12rem">
+        <span class="circle" aria-hidden="true">
+          <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">S'enregistrer</span>
+      </button>
+    <br>
   </div>
 </div>
 

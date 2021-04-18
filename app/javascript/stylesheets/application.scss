@@ -94,6 +94,7 @@ body.modal-active {
 
 /** Force on this div only **/
 .scrolling{
+  padding-top: 1rem !important;
   overflow: auto;
   max-height: 100vh;
   @media only screen and (max-width : 768px) {
