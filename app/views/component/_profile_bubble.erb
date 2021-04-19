@@ -1,0 +1,17 @@
+<a href="<%= user_path(user) %>" class="items-center justify-center profileMainContainer">
+  <div class="profileContainer">
+    <div class="-mt-8 md:-my-4 md:-ml-16">
+      <img
+        class="w-auto h-48 profileImage"
+        src="<%= user.imageUrl %>"
+        alt="<%= user.name %>"
+        />
+    </div>
+    <div class="flex flex-col ml-4 overflow-hidden md:whitespace-nowrap text-center">
+      <div class="flex flex-col items-center md:items-start">
+        <h2 class="text-xl font-medium"><%= user.name %></h2>
+        <p class="text-base font-medium text-gray-400"><%= user.status %></p>
+      </div>
+    </div>
+  </div>
+</a>

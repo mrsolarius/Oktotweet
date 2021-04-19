@@ -72,6 +72,7 @@ body.modal-active {
 }
 
 .profileImage{
+  max-width: none;
   width: 4rem;
   height: 4rem;
   object-fit: cover;
@@ -111,6 +112,13 @@ h1{
   @media only screen and (max-width : 768px) {
     text-align: center;
   }
+}
+
+img{
+  //If image can't load display alt in center of image
+  text-align: center;
+  align-content: center;
+  display: grid;
 }
 
 /** Forms **/

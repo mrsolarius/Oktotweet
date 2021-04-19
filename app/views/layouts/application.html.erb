@@ -13,5 +13,12 @@
 
   <body class="h-screen flex items-center justify-center bg-dark">
     <%= yield %>
+    <%= javascript_pack_tag 'script/displayModal'%>
+    <% if defined?(notice) && notice%>
+      <%= render 'component/notify', title:'Info',message:notice,icon:'fas fa-check-circle',background:'bg-blue-space'%>
+    <% end%>
+    <% if defined?(status) && status%>
+      <%= render 'component/notify', title:'Erreur',message:status,icon:'fas fa-exclamation-circle',background:'bg-red-imperial'%>
+    <% end%>
   </body>
 </html>
