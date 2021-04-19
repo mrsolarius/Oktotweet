@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
     <%= form.label :bio %>
     <%= form.text_area :bio %>
   </div>
@@ -27,6 +32,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <button type="submit" class="px-4 bg-red-imperial p-3 rounded-lg text-white hover:bg-blue-space">Envoyer</button>
   </div>
 <% end %>

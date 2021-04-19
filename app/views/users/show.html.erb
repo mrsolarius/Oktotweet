@@ -1,19 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="grid grid-cols-1">
+  <h1>Editing User</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
 
-<p>
-  <strong>Bio:</strong>
-  <%= @user.bio %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Imageurl:</strong>
-  <%= @user.imageUrl %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <p>
+    <strong>Status:</strong>
+    <%= @user.status %>
+  </p>
+  <p>
+    <strong>Bio:</strong>
+    <%= @user.bio %>
+  </p>
+
+  <p>
+    <strong>Imageurl:</strong>
+    <%= @user.imageUrl %>
+  </p>
+
+  <div class="flex">
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Back', users_path %>
+  </div>
+</div>
