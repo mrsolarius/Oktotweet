@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_163850) do
+ActiveRecord::Schema.define(version: 2021_04_13_085920) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "status"
     t.text "bio"
-    t.text "imageUrl"
+    t.string "imageName"
+    t.binary "imageB64", limit: 52428800
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
   end
 
 end

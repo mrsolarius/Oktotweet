@@ -3,7 +3,7 @@
     <div class="-mt-8 md:-my-4 md:-ml-16">
       <img
         class="w-auto h-48 profileImage"
-        src="<%= user.imageUrl %>"
+        src="<%= user.imageB64? ? url_for(:action => 'file', :id => user.id) : 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='%>"
         alt="<%= user.name %>"
         />
     </div>

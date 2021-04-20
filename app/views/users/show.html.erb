@@ -19,8 +19,10 @@
   </p>
 
   <p>
-    <strong>Imageurl:</strong>
-    <%= @user.imageUrl %>
+    <strong>Image:</strong>
+    <% if @user.imageB64?%>
+      <img src="<%= url_for(:action => 'file', :id => @user.id) %>"/>
+    <%end%>
   </p>
 
   <div class="flex">

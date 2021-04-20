@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ show edit update destroy file ]
 
   # GET /users or /users.json
   def index
@@ -7,9 +7,8 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # GET /users/1 or /users/1.json
-  def show
-  end
+  # GET /users/1
+  def show; end
 
   # GET /users/new
   def new
@@ -17,10 +16,9 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /users or /users.json
+  # POST /users
   def create
     @user = User.new(user_params)
     respond_to do |format|
@@ -32,7 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
+  # PATCH/PUT /users/1
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -43,11 +41,20 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1 or /users/1.json
+  # DELETE /users/1
   def destroy
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: "L'utilisateur à bien était suprimer." }
+    end
+  end
+
+  # GET /asset/users/1/profile
+  def file
+    if @user.imageB64?
+      send_data(@user.imageB64, filename: @user.imageName, disposition: "inline")
+    else
+      raise ActionController::RoutingError, 'Not Found'
     end
   end
 
@@ -60,6 +67,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name,:status, :bio, :imageUrl)
+    params.require(:user).permit(:name,:status, :bio, :profile_img)
   end
 end
