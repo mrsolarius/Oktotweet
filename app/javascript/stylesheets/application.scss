@@ -11,6 +11,8 @@ $secondary: #202c5a;
 $slate:#3730A3;
 $dark:#0E131F;
 
+@import "oktotweet_animation";
+
 * {
   @apply text-gray-light;
   transition: all 330ms ease-out;

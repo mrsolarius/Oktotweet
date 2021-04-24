@@ -1,0 +1,12 @@
+#rightTentacle{
+  stroke-dasharray: 460;
+  stroke-dashoffset: 460;
+  animation: rightTentacleAnim 10s ease;
+  animation-fill-mode: forwards;
+  @keyframes rightTentacleAnim {
+    to{
+      stroke-dashoffset: 0;
+    }
+  }
+}
+

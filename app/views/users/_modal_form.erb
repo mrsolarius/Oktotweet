@@ -23,13 +23,18 @@
       </div>
       <%= form_with model: user, validate: true do |form| %>
         <div class="field">
-          <%= form.label :name, 'Nom d\'utilisateur' %>
+          <%= form.label :login , 'Identifiant'%>
+          <%= form.text_field :login %>
+        </div>
+
+        <div class="field">
+          <%= form.label :name , 'Nom d\'utilisateur'%>
           <%= form.text_field :name %>
         </div>
 
         <div class="field">
-          <%= form.label :status, 'Status' %>
-          <%= form.text_field :status %>
+          <%= form.label :location , 'Localisation'%>
+          <%= form.text_field :location %>
         </div>
 
         <div class="field">
