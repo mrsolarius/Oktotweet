@@ -22,10 +22,4 @@ class User < ApplicationRecord
   def base_part_of(file_name)
     File.basename(file_name).gsub(/[^\w._-]/, '')
   end
-
-  private
-
-  def login_not_change
-    errors.add(:login, "Vous ne pouvez pas modifier votre login !") if login? && persisted?
-  end
 end
