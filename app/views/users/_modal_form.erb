@@ -10,7 +10,7 @@
       <span class="text-sm">(Esc)</span>
     </div>
     <!-- Modal Shape -->
-    <div class="modal-content py-4 text-left px-10 pt-6">
+    <div <%=user.errors.any? ? 'id=asError' : '' %> class="modal-content py-4 text-left px-10 pt-6">
       <!--Title-->
       <div class="flex justify-between items-center pb-3">
         <h1 class="mb-0">Insctiption !</h1>

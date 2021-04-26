@@ -25,7 +25,8 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to @user, notice: "L'utilisateur à bien était crée." }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        @users = User.all
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end

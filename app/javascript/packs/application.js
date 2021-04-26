@@ -14,3 +14,12 @@ Rails.start()
 Turbolinks.start()
 import '@client-side-validations/client-side-validations'
 ActiveStorage.start()
+
+window.ClientSideValidations.validators.remote['client_uniqueness'] = function(element, options) {
+    if ($.ajax({
+        url: '/validators/client_uniqueness',
+        data: { login: element.val() },
+        // async *must* be false
+        async: false
+    }).status === 200) { console.log(options); return options.message; }
+}

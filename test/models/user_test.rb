@@ -49,7 +49,6 @@ class UserTest < ActiveSupport::TestCase
       assert_equal(@user.save, try)
     end
   end
-
   test 'max login length' do
     # max login length is 15 character
     @user = User.new(login: 'timeeeeeeeeeeeee', name: 'nom')

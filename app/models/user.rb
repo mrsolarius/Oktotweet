@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # Class user
 class User < ApplicationRecord
   # prevent login update

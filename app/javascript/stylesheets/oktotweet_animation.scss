@@ -1,12 +1,18 @@
-#rightTentacle{
-  stroke-dasharray: 460;
-  stroke-dashoffset: 460;
-  animation: rightTentacleAnim 10s ease;
+#oktotweet{
+  stroke: white;
+  stroke-dasharray: 10;
+  animation: Anim 10s ease-out;
+  animation-delay: 2s;
   animation-fill-mode: forwards;
-  @keyframes rightTentacleAnim {
-    to{
-      stroke-dashoffset: 0;
-    }
+  fill: rgba(0,0,0,0);
+  &:hover{
+    animation: Anim 10s ease-in;
   }
 }
-
+@keyframes Anim {
+  to{
+      stroke-dasharray: 1000;
+      fill: #FE0134;
+      stroke: rgba(0, 0, 0, 0);
+  }
+}
