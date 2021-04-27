@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   validates :location, length: { maximum: 30 }
 
+  has_many :tweets
   # get user profile image from parameter and set in object
   def profile_img=(user_params)
     self.imageName = base_part_of(user_params.original_filename)

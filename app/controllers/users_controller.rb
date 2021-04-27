@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy file ]
+  before_action :set_user, only: %i[login show edit update destroy file]
+
+  def login
+    session[:current_user_id] = @user.id
+    respond_to do |format|
+      format.html { redirect_to @user, notice: "Vous êtes connecter" }
+    end
+  end
 
   # GET /users or /users.json
   def index

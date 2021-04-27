@@ -17,8 +17,8 @@
     <% if defined?(notice) && notice%>
       <%= render 'component/notify', title:'Info',message:notice,icon:'fas fa-check-circle',background:'bg-blue-space'%>
     <% end%>
-    <% if defined?(status) && status%>
-      <%= render 'component/notify', title:'Erreur',message:status,icon:'fas fa-exclamation-circle',background:'bg-red-imperial'%>
+    <% if defined?(error) && error%>
+      <%= render 'component/notify', title:'Erreur',message:error,icon:'fas fa-exclamation-circle',background:'bg-red-imperial'%>
     <% end%>
   </body>
 </html>
