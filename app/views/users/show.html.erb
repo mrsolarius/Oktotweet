@@ -20,7 +20,11 @@
         <% if @user_auth.id == @user.id %>
          <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'edit', :id => @user.id) %>'">Editer le profile</button>
         <% else %>
-          <button class="btnSecondary">Suivre</button>
+          <%if @user_auth.followings.include?(@user)%>
+            <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'unfollow', :controller => :follows, :follow_user_id => @user.id) %>'">Ne plus suivre</button>
+          <%else %>
+            <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'follow', :controller => :follows, :follow_user_id => @user.id) %>'">Suivre</button>
+          <%end %>
         <% end %>
       </div>
       <div class="profileInfoConainer">

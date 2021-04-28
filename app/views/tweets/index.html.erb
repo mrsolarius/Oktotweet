@@ -4,7 +4,6 @@
   </div>
   <div class="defilable-thread">
 
-  <p id="notice"><%= notice %></p>
   <% @tweets.each do |tweet| %>
     <%= render 'component/tweet', tweet: tweet %>
   <% end %>

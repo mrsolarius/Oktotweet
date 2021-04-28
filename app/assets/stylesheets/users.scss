@@ -21,15 +21,15 @@
     }
 
     .topProfileContainer{
-      align-ite
-      .topProfileContainer{
-        display: flex;
-        flex-direction: column;
-        img{
-          border-radius: 40%;ms: center;
+      align-items: center;
       width: 100%;
     }
   }
+  .topProfileContainer{
+    display: flex;
+    flex-direction: column;
+    img{
+      border-radius: 40%;
       aspect-ratio: 1/1;
       width: 200pt;
     }

@@ -60,6 +60,7 @@ class UsersController < ApplicationController
   def destroy
     respond_to do |format|
       if @user.id == auth_user_id
+        @user.tweet.each(&:destroy)
         @user.destroy
         format.html { redirect_to users_url, notice: "Votre compte à était supprimer" }
       else
