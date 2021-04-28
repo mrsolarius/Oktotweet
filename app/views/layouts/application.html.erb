@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TwityMineR</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>TwityMineR</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= render 'application/favicon' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= render 'application/favicon' %>
+</head>
 
-  <body class="h-screen flex items-center justify-center bg-dark">
-    <%= yield %>
-    <%= javascript_pack_tag 'script/displayModal'%>
-    <% if defined?(notice) && notice%>
-      <%= render 'component/notify', title:'Info',message:notice,icon:'fas fa-check-circle',background:'bg-blue-space'%>
-    <% end%>
-    <% if defined?(error) && error%>
-      <%= render 'component/notify', title:'Erreur',message:error,icon:'fas fa-exclamation-circle',background:'bg-red-imperial'%>
-    <% end%>
-  </body>
+<body class="m-0 bg-dark">
+<div class="contentContainer col-flex">
+  <header class="nav col-flex">
+    <%=render 'layouts/nav/navigation' %>
+  </header>
+  <main class="content col-flex">
+    <div class="thread col-flex">
+      <%= yield %>
+    </div>
+    <div class="rightPann col-flex">
+      <%=render 'layouts/nav/rightPan' %>
+    </div>
+  </main>
+</div>
+<% if @user_auth%>
+  <%= render 'tweets/modal_form', tweet: Tweet.new %>
+<% end %>
+<%= javascript_pack_tag 'script/displayModal'%>
+<% if defined?(notice) && notice%>
+  <%= render 'component/notify', title:'Info',message:notice,icon:'fas fa-check-circle',background:'bg-blue-space'%>
+<% end%>
+<% if defined?(error) && error%>
+  <%= render 'component/notify', title:'Erreur',message:error,icon:'fas fa-exclamation-circle',background:'bg-red-imperial'%>
+<% end%>
+</body>
 </html>

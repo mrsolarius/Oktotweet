@@ -3,6 +3,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
+    @user_auth = auth_user
     @tweets = Tweet.all
   end
 
@@ -15,9 +16,6 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
 
-  # GET /tweets/1/edit
-  def edit
-  end
 
   # POST /tweets or /tweets.json
   def create
@@ -60,6 +58,7 @@ class TweetsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_tweet
+    @user_auth = auth_user
     @tweet = Tweet.find(params[:id])
   end
 
@@ -71,7 +70,7 @@ class TweetsController < ApplicationController
   end
 
   def auth_user
-    User.find(auth_user_id)
+    User.find(auth_user_id) unless auth_user_id.nil?
   end
 
   def auth_user_id

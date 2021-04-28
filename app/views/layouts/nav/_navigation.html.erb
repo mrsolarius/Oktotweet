@@ -1,0 +1,131 @@
+<div class="leftPann">
+  <div class="menu col-flex">
+    <ul>
+      <li>
+        <a title="Ocktotweet" href="<%= url_for(controller:'tweets', action: 'index')%>">
+          <div class="nav-item">
+            <svg id="oktotweet" data-name="OktoTweet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 130" width="30" height="30">
+              <title>OktoTweet</title>
+              <path id="rightTentacle" d="M45.13,49.78c0-5.79-.05-10.65,0-15.52.15-12.89,9.44-22.55,21.6-22.53,12.42,0,21.72,9.73,21.77,22.79,0,11.5-.06,23,0,34.49.1,13,10.28,23,22.82,22.64,12.94-.42,22.47-11.4,21.45-24.7C131.83,54,117.89,44.1,105.67,48c0,2.59,0,5.32,0,8,0,1.11.11,2.21.16,3.31a45.52,45.52,0,0,1,4.61-.61,10.34,10.34,0,0,1,10.78,8.9A10.75,10.75,0,0,1,113.8,79.6c-7,2.15-13.73-3-13.8-10.94-.1-11.87.17-23.75-.09-35.61C99.6,19,92.83,8.61,80,3s-25-3.43-35.53,5.82c-10,8.75-11.66,20.44-10.86,32.84a3,3,0,0,0,1.2,2.11C38,45.75,41.21,47.53,45.13,49.78Z"/>
+              <path id="leftTentacle" d="M33.54,69.52c-.42,1.49-.64,2.46-1,3.39a10.92,10.92,0,0,1-12.09,7.26A10.92,10.92,0,1,1,27,59.57c6.9,3.44,13.41,7.68,20.13,11.48,1,.55,2.48,1.18,3.29.8,3.46-1.6,6.75-3.57,10.5-5.62-8-4.91-15.55-9.59-23.18-14.06a45.52,45.52,0,0,0-8.82-4A22.05,22.05,0,0,0,1.59,61,22.41,22.41,0,0,0,12.37,89.35a22.34,22.34,0,0,0,29-8.73c3-5.1,3-5.1-2.32-8Z" transform="translate(0 0)"/>
+              <path id="bottomTentacle" d="M82.9,59.76C75.07,64,67.5,68.05,60,72.24a58.82,58.82,0,0,0-6.49,4.41c-6.6,4.94-9.61,11.6-9.11,19.81a22.17,22.17,0,0,0,41.73,8.69,21.68,21.68,0,0,0-4-26l-10.06,6a23.69,23.69,0,0,1,3,2.61,10.48,10.48,0,0,1,1.67,10.92,10.12,10.12,0,0,1-8.27,6.74c-5.51.81-10.11-1.78-12.07-6.66a10.61,10.61,0,0,1,4.1-13.17C66.89,81.57,73.63,78,80.15,74.12c1.13-.68,2.52-2,2.63-3.09C83.12,67.46,82.9,63.84,82.9,59.76Z"/>
+              <path id="rightEye" d="M75.71,40.3a5.36,5.36,0,0,0,5.49-5.42,5.49,5.49,0,0,0-5.32-5.63,5.7,5.7,0,0,0-5.76,5.66A5.53,5.53,0,0,0,75.71,40.3Z"/>
+              <path id="leftEye" d="M57.73,40.3A5.38,5.38,0,0,0,63.37,35a5.49,5.49,0,0,0-5.53-5.79,5.55,5.55,0,0,0-5.47,5.51A5.38,5.38,0,0,0,57.73,40.3Z"/>
+            </svg>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a title="Acceuil" href="<%=url_for(controller:'tweets', action: 'index')%>">
+          <div class="nav-item">
+            <div class="nav-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <polyline points="5 12 3 12 12 3 21 12 19 12"/>
+                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"/>
+                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"/>
+              </svg>
+            </div>
+            <div class="nav-inner title">
+              Acceuil
+            </div>
+          </div>
+        </a>
+      </li>
+      <% if @user_auth != nil %>
+        <li>
+          <a href="#">
+            <div class="nav-item">
+              <div class="nav-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bookmarks" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M13 7a2 2 0 0 1 2 2v12l-5 -3l-5 3v-12a2 2 0 0 1 2 -2h6z"/>
+                  <path d="M9.265 4a2 2 0 0 1 1.735 -1h6a2 2 0 0 1 2 2v12l-1 -.6"/>
+                </svg>
+              </div>
+              <div class="nav-inner title">
+                Suivit
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="<%=url_for(controller: 'users', action: 'show', id: @user_auth.id) %>">
+
+            <div class="nav-item">
+              <div class="nav-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <circle cx="12" cy="7" r="4"/>
+                  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
+                </svg>
+              </div>
+              <div class="nav-inner title">
+                Profile
+              </div>
+            </div>
+          </a>
+        </li>
+      <% else %>
+        <li>
+          <a href="<%=url_for(controller:'users', action: 'index')%>">
+            <div class="nav-item">
+              <div class="nav-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                  <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+                </svg>
+              </div>
+              <div class="nav-inner title">
+                Connexion
+              </div>
+            </div>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <% if @user_auth != nil %>
+    <div class="col-flex" style="margin-top:30pt;">
+      <button class="modal-open btnPrimary newtweet">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+          <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5"/>
+        </svg>
+        <span>Octweets</span></button>
+    </div>
+  <%end %>
+</div>
+<% if @user_auth != nil %>
+  <div class="col-flex leftPann userProfile" style="margin-top:auto;">
+    <a class="col-flex contentContainer" href="<%=url_for(controller: 'users', action: 'show', id: @user_auth.id) %>">
+      <div class="col-flex centerContent">
+        <img class="avatarImg" src="<%= @user_auth.imageB64? ? url_for(controller: 'users', action: 'file', id: @user_auth.id) : 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='%>">
+      </div>
+      <div class="col-flex centerSelft accountToHide">
+        <div class="userBox">
+          <div>
+            <span class="username">
+              <%=@user_auth.name %>
+            </span>
+          </div>
+          <div class="col-flex">
+            <span class="login">
+              @<%=@user_auth.login %>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-flex centerSelft accountToHide" style="margin-left:auto">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <circle cx="5" cy="12" r="1"/>
+          <circle cx="12" cy="12" r="1"/>
+          <circle cx="19" cy="12" r="1"/>
+        </svg>
+      </div>
+    </a>
+  </div>
+<%end %>

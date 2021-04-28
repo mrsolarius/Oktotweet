@@ -1,39 +1,61 @@
-<div class="grid grid-cols-1">
-  <h1>Editing User</h1>
-
-
-  <p id="notice"><%= notice %></p>
-
-  <p>
-    <strong>Login:</strong>
-    <%= @user.login %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= @user.name %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= @user.location %>
-  </p>
-
-  <p>
-    <strong>Bio:</strong>
-    <%= @user.bio %>
-  </p>
-
-  <p>
-    <strong>Image:</strong>
-    <% if @user.imageB64?%>
-      <img src="<%= url_for(:action => 'file', :id => @user.id) %>"/>
-    <%end%>
-  </p>
-
-  <div class="flex">
-    <%= link_to 'Edit', edit_user_path(@user) %> |
-    <%= link_to 'Back', users_path %> |
-    <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Êtes vous sure?' } %>
+<div class="flew">
+  <div class="topbar">
+    <div class="backArrow" onclick="window.history.back()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <line x1="5" y1="12" x2="19" y2="12" />
+        <line x1="5" y1="12" x2="11" y2="18" />
+        <line x1="5" y1="12" x2="11" y2="6" />
+      </svg>
+    </div>
+    <div class="titleGroup">
+      <h1><%= @user.name %></h1>
+      <strong><%= @user.tweets.count %> Tweets</strong>
+    </div>
+  </div>
+  <div class="defilable-thread">
+    <div class="profileShow">
+      <div class="topProfileContainer">
+        <img src="<%= url_for(:action => 'file', :id => @user.id) %>">
+        <% if @user_auth.id == @user.id %>
+         <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'edit', :id => @user.id) %>'">Editer le profile</button>
+        <% else %>
+          <button class="btnSecondary">Suivre</button>
+        <% end %>
+      </div>
+      <div class="profileInfoConainer">
+        <h1><%= @user.name %></h1>
+        <small>@<%= @user.login %></small>
+        <p>
+        <br>
+        <%if @user.bio%>
+          <small>Bio</small>
+          <br>
+          <span class="description">
+            <%= @user.bio %>
+          </span>
+        <% end %>
+        <br>
+        <small>
+          <%if @user.location%>
+            <br>
+            <i class="far fa-map"></i> <%= @user.location %>
+          <%end %>
+          <%if @user.created_at %>
+            <br>
+            <i class="far fa-calendar-alt"></i> <%= @user.created_at %>
+          <%end %>
+        </small>
+        </p>
+      </div>
+    </div>
+    <div class="flex">
+        <%= link_to 'Edit', edit_user_path(@user) %> |
+        <%= link_to 'Back', users_path %> |
+        <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Êtes vous sure?' } %>
+    </div>
+    <% @user.tweets.each do |tweet| %>
+      <%= render 'component/tweet', tweet: tweet %>
+    <% end %>
   </div>
 </div>

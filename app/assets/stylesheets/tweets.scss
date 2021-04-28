@@ -1,3 +1,457 @@
 // Place all the styles related to the tweets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import "vars";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;800&display=swap');
+
+.col-flex{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+h1{
+  color:$primary;
+  margin-bottom:1rem;
+  font-family: 'Montserrat', sans-serif;
+  @media only screen and (max-width : $md) {
+    text-align: center;
+  }
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 13pt;
+}
+strong{
+  font-weight: 800;
+}
+
+small {
+  color: gray;
+  font-weight: 200;
+  font-size: 9pt !important;
+}
+
+.username{
+  font-family: 'Montserrat', sans-serif;
+  color:white;
+  font-size:13pt;
+}
+
+.login{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  font-size:9pt;
+  color:gray;
+}
+
+body{
+  background-color:$dark;
+  margin:0;
+}
+
+.rightPann{
+  padding:15pt;
+  min-width:250pt;
+  @media only screen and (max-width : $lg){
+    display:none!important;
+  }
+}
+
+.card{
+  border-radius:15pt;
+  background-color:$secondary;
+  padding-bottom:10pt;
+  .card-title{
+    font-size:1.5rem;
+    border-top:0px;
+  }
+  &>* {
+    padding:5pt 10pt;
+    border-top: solid $border 1px;
+  }
+}
+
+.newtweet{
+  & > svg{
+    display:none!important;
+  }
+  @media only screen and (max-width : $md){
+    & > span{
+      display:none!important;
+    }
+    & > svg{
+      display:block!important;
+    }
+  }
+}
+
+.btnPrimary{
+  background:$primary;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:800;
+  font-size:10pt;
+  padding:10pt;
+  width:100%;
+  border-radius:10pt;
+  width:100%;
+  border:0;
+  color:white;
+  transition: all .5s;
+
+  &:hover{
+    box-shadow:0px 10px 10px rgba(0,0,0,0.2);
+    transform : translateY(-3px);
+  }
+
+  &::after{
+    content:"";
+    text-decoration: none;
+    text-transform:uppercase;
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    border-radius:10pt;
+    display:inline-block;
+    z-index:-1;
+    transition: all .5s;
+  }
+
+  &::after {
+    background: $primary;
+  }
+
+  &:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+  }
+}
+
+.btnSecondary{
+  background:none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:800;
+  font-size:10pt;
+  padding:10pt;
+  width:100%;
+  border-radius:10pt;
+  border:solid $primary 2px !important;
+  width:100%;
+  border:0;
+  color:$primary;
+  transition: all .5s;
+
+  &:hover{
+    box-shadow:0px 10px 10px rgba(0,0,0,0.2);
+    transform : translateY(-2px);
+    background:$primary;
+    color:white;
+  }
+
+  &::after{
+    content:"";
+    text-decoration: none;
+    text-transform:uppercase;
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    border-radius:10pt;
+    display:inline-block;
+    z-index:-1;
+    transition: all .5s;
+  }
+
+  &::after {
+    background: rgba(254, 1, 52,0.2);
+  }
+
+  &:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+    background: $primary;
+  }
+}
+
+.pageContainer{
+  flex: 1 1 0%;
+}
+
+.contentContainer {
+  flex-direction: row !important;
+}
+
+h1{
+  font-size:1.5rem !important;
+  margin-block-start: 0.67em !important;
+  margin-block-end: 0.67em !important;
+}
+
+.topbar{
+  border-bottom: solid $border 1px;
+  padding:5pt 20pt;
+  height: 70px;
+  display: flex;
+  * {
+    margin: 0;
+    align-self: center;
+  }
+  .backArrow{
+    &:hover {
+      stroke: $primary;
+      stroke-dashoffset: 0;
+      cursor: pointer;
+    }
+    transform-origin: right;
+    transition: transform 10s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    stroke-dashoffset:-100;
+    stroke-dasharray: 50;
+    stroke: white;
+  }
+  .titleGroup{
+    margin-left: 1rem;
+    h1{
+      font-size: 1rem;
+      line-height: 0 !important;
+    }
+    strong{
+      font-size: 12pt;
+      color: white;
+    }
+  }
+}
+
+.defilable-thread{
+  //need to be the same size of the topbar
+  height: calc(100vh - 70px);
+  overflow: auto;
+  padding-top: 0pt;
+}
+
+.centerContent{
+  align-content:center;
+  align-items:center;
+}
+
+.centerSelft{
+  align-self:center;
+}
+
+.avatarImg{
+  height:30pt;
+  width:30pt;
+  border-radius:40%;
+}
+
+.userBox{
+  margin-left:1rem;
+}
+
+.nav{
+  align-items: flex-end;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height:100vh;
+  min-width: max-content;
+  @media only screen and (max-width: $md){
+    min-width:min-content;
+  }
+}
+
+.leftPann{
+  width:100%;
+  padding:20pt;
+  @media only screen and (max-width: $md){
+    width:auto;
+    padding: 20pt 2pt;
+  }
+}
+.accountToHide{
+  @media only screen and (max-width: $md){
+    display:none!important;
+  }
+}
+
+.content{
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.logo{
+  width:50pt;
+}
+
+.thread{
+  min-width:38vw;
+  width:100%;
+  border:solid $border 1px;
+  border-bottom-width:0px;
+  border-top-width:0px;
+}
+
+ul{
+  display:flex;
+  flex-direction: column;
+  align-items: start;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  li {
+    @media only screen and(max-width:$md){
+      align-self:center;
+    }
+    a{
+      position: relative;
+      display: block;
+      padding-top:15pt;
+      padding-bottom:3pt;
+      text-decoration:none;
+      &::after {
+        position: absolute;
+        content: "";
+        top: 100%;
+        left: 6%;
+        width: 80%;
+        height: 2pt;
+        background: $primary;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+      }
+      &:hover {
+        color: $primary;
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+      &:hover{
+        .nav-item{
+          stroke:$primary;
+          fill:$primary;
+          color :$primary;
+          stroke-dashoffset: 0;
+        }
+      }
+      .nav-item{
+        padding:5pt;
+        padding-bottom:0;
+        display:flex;
+        stroke-dasharray: 50;
+        stroke-dashoffset: -100;
+        stroke:white;
+        fill: white;
+        color : white;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15pt;
+        font-weight:800;
+        transition: 0.5s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+        @media only screen and(max-width:$md){
+          width:30px;
+          padding: 5pt 0;
+          margin-right:0;
+        }
+      }
+
+      .nav-inner{
+        display: flex;
+        align-content: center;
+        align-items: center;
+        margin-right:10pt;
+        @media only screen and(max-width:$md){
+          margin-right:0;
+        }
+      }
+      .title{
+        @media only screen and (max-width: $md){
+          display:none!important;
+        }
+      }
+    }
+  }
+}
+
+.userProfile{
+  @media only screen and(max-width:$md){
+    padding:0;
+    padding-bottom:10px;
+    align-self:center;
+  }
+}
+
+$secondaryColor: #657685;
+$borderColor: #e6ecf1;
+$redColor: #e0245e;
+$blueColor: #1ca0f3;
+
+
+/**Tweet**/
+.tweet {
+  padding: 10pt;
+  border-bottom: 1px solid $border;
+
+  .user-image {
+    border-radius: 40%;
+    width: 30pt;
+    height: 30pt;
+  }
+
+  .description {
+    font-weight: 400;
+  }
+
+  .tweet-image img {
+    border-radius: 10px;
+    padding-bottom: 5px;
+    aspect-ratio: 1/1;
+  }
+
+  &:hover{
+    background-color: $secondary;
+  }
+}
+
+.tweet:last-of-type {
+  margin-bottom: 85px;
+}
+.media{
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+}
+
+
+.media-left {
+  margin-right: 1rem;
+}
+
+.media-left, .media-right {
+  flex-basis: auto;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.media-content {
+  flex-basis: auto;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: left;
+  flex-direction: column;
+}
+
+.media-content{
+  display: flex;
+}

@@ -1,10 +1,19 @@
-<div class="grid grid-cols-1">
-<h1>Editing User</h1>
-
-<%= render 'form', user: @user, form_action: 'update', form_method: 'PATCH'%>
-<div class="flex">
-  <%= link_to 'Show', @user %> |
-  <%= link_to 'Back', users_path %>
-</div>
-
+<div class="flew">
+  <div class="topbar">
+    <div class="backArrow" onclick="window.history.back()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <line x1="5" y1="12" x2="19" y2="12" />
+        <line x1="5" y1="12" x2="11" y2="18" />
+        <line x1="5" y1="12" x2="11" y2="6" />
+      </svg>
+    </div>
+    <div class="titleGroup">
+      <h1>Edition du profile</h1>
+      <strong><%= @user.name %></strong>
+    </div>
+  </div>
+  <div class="defilable-thread" style="padding: 10pt">
+    <%= render 'form', user: @user, form_action: 'update', form_method: 'PATCH'%>
+  </div>
 </div>
