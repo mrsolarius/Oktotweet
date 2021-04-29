@@ -23,7 +23,7 @@
     <h1>Se connecter !</h1>
     <div class="grid gap-5 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 grid-cols-1 mt-5">
         <% @users.each do |user| %>
-          <%= render 'component/profile_bubble', user: user, login:true %>
+          <%= render 'component/profile_bubble', user: user, login:true, user_auth: nil, follow_box: false  %>
         <% end %>
       </div>
     <br>

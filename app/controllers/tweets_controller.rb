@@ -11,6 +11,13 @@ class TweetsController < ApplicationController
   def show
   end
 
+  def follow_feed
+    @user_auth = auth_user
+    @tweets = []
+    Tweet.all.order('created_at DESC').each do |tweet|
+      @tweets << tweet if @user_auth.followings.include?(tweet.user)
+    end
+  end
   # GET /tweets/new
   def new
     @tweet = Tweet.new

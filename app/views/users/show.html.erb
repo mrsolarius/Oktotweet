@@ -3,9 +3,9 @@
     <div class="backArrow" onclick="window.history.back()">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-        <line x1="5" y1="12" x2="19" y2="12" />
-        <line x1="5" y1="12" x2="11" y2="18" />
-        <line x1="5" y1="12" x2="11" y2="6" />
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <line x1="5" y1="12" x2="11" y2="18"/>
+        <line x1="5" y1="12" x2="11" y2="6"/>
       </svg>
     </div>
     <div class="titleGroup">
@@ -14,52 +14,99 @@
     </div>
   </div>
   <div class="defilable-thread">
-    <div class="profileShow">
-      <div class="topProfileContainer">
-        <img src="<%= url_for(:action => 'file', :id => @user.id) %>">
-        <% if @user_auth.id == @user.id %>
-         <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'edit', :id => @user.id) %>'">Editer le profile</button>
-        <% else %>
-          <%if @user_auth.followings.include?(@user)%>
-            <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'unfollow', :controller => :follows, :follow_user_id => @user.id) %>'">Ne plus suivre</button>
-          <%else %>
-            <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'follow', :controller => :follows, :follow_user_id => @user.id) %>'">Suivre</button>
-          <%end %>
-        <% end %>
-      </div>
-      <div class="profileInfoConainer">
-        <h1><%= @user.name %></h1>
-        <small>@<%= @user.login %></small>
-        <p>
-        <br>
-        <%if @user.bio%>
-          <small>Bio</small>
-          <br>
-          <span class="description">
-            <%= @user.bio %>
-          </span>
-        <% end %>
-        <br>
-        <small>
-          <%if @user.location%>
+    <div class="profile">
+      <div class="profileShow">
+        <div class="topProfileContainer">
+          <img src="<%= url_for(:action => 'file', :id => @user.id) %>">
+          <% if @user_auth != nil %>
+            <% if @user_auth.id == @user.id %>
+              <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'edit', :id => @user.id) %>'">Editer
+                le profile
+              </button>
+            <% else %>
+              <% if @user_auth.followings.include?(@user) %>
+                <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'unfollow', :controller => :follows, :follow_user_id => @user.id) %>'">Ne
+                  plus suivre
+                </button>
+              <% else %>
+                <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'follow', :controller => :follows, :follow_user_id => @user.id) %>'">Suivre</button>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="profileInfoConainer">
+          <h1><%= @user.name %></h1>
+          <small>@<%= @user.login %></small>
+          <p>
             <br>
-            <i class="far fa-map"></i> <%= @user.location %>
-          <%end %>
-          <%if @user.created_at %>
+            <% if @user.bio %>
+              <small>Bio</small>
+              <br>
+              <span class="description">
+              <%= @user.bio %>
+            </span>
+            <% end %>
             <br>
-            <i class="far fa-calendar-alt"></i> <%= @user.created_at %>
-          <%end %>
-        </small>
-        </p>
+            <small>
+              <% if @user.location %>
+                <br>
+                <i class="far fa-map"></i> <%= @user.location %>
+              <% end %>
+              <% if @user.created_at %>
+                <br>
+                <i class="far fa-calendar-alt"></i> <%= @user.created_at %>
+              <% end %>
+              <br>
+
+              Abonées <strong><%= @user.received_follows.count %></strong> · Abonement
+              <strong><%= @user.given_follows.count %></strong>
+
+            </small>
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="flex">
+      <div class="flex">
         <%= link_to 'Edit', edit_user_path(@user) %> |
-        <%= link_to 'Back', users_path %> |
         <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Êtes vous sure?' } %>
+      </div>
+      <div class="profileLink">
+        <ul>
+          <li>
+            <a class="<%= action_name == 'show' ? 'selected' : nil %>" href="<%= url_for(controller: 'users', action: 'show', id: @user.id) %>">Tweet</a>
+          </li>
+          <li>
+            <a class="<%= action_name == 'following' ? 'selected' : nil %>" href="<%= url_for(controller: 'users', action: 'following', id: @user.id) %>">Abonemment</a>
+          </li>
+          <li>
+            <a class="<%= action_name == 'followers' ? 'selected' : nil %>" href="<%= url_for(controller: 'users', action: 'followers', id: @user.id) %>">Abonné</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <% @user.tweets.each do |tweet| %>
-      <%= render 'component/tweet', tweet: tweet %>
+    <% if action_name == 'show' %>
+      <% @user.tweets.order('created_at DESC').each do |tweet| %>
+        <%= render 'component/tweet', tweet: tweet %>
+      <% end %>
+    <% else %>
+      <div class="follow-grid">
+        <% if action_name == 'followers' %>
+          <% @user.followers.each do |user| %>
+            <% if @user_auth != nil %>
+              <%= render 'component/profile_bubble', user: user, login: false, user_auth: @user_auth, follow_box: true %>
+            <% else %>
+              <%= render 'component/profile_bubble', user: user, login: false, user_auth: @user_auth, follow_box: false %>
+            <% end %>
+          <% end %>
+        <% elsif action_name == 'following' %>
+          <% @user.followings.each do |user| %>
+            <% if @user_auth != nil %>
+              <%= render 'component/profile_bubble', user: user, login: false, user_auth: @user_auth, follow_box: true %>
+            <% else %>
+              <%= render 'component/profile_bubble', user: user, login: false, user_auth: @user_auth, follow_box: false  %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

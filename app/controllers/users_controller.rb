@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   layout :resolve_layout
-  before_action :set_user, only: %i[login show edit update destroy file]
+  before_action :set_user, only: %i[login show following followers edit update destroy file]
 
   def login
     session[:current_user_id] = @user.id
@@ -17,6 +17,14 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show; end
+
+  def following
+    render 'show'
+  end
+
+  def followers
+    render 'show'
+  end
 
   # GET /users/new
   def new
@@ -101,7 +109,11 @@ class UsersController < ApplicationController
   end
 
   def auth_user
-    User.find(auth_user_id) unless auth_user_id.nil?
+    if auth_user_id.nil?
+      nil
+    else
+      User.find(auth_user_id)
+    end
   end
 
   def auth_user_id
