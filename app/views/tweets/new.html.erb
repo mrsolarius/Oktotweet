@@ -1,5 +1,18 @@
-<h1>New Tweet</h1>
+<div class="flew">
+  <div class="topbar">
+    <div class="backArrow" onclick="window.history.back()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <line x1="5" y1="12" x2="19" y2="12" />
+        <line x1="5" y1="12" x2="11" y2="18" />
+        <line x1="5" y1="12" x2="11" y2="6" />
+      </svg>
+    </div>
+    <h1>Ecrire un nouveau tweet</h1>
+  </div>
+  <div class="defilable-thread">
+    <%= render 'form', tweet: @tweet %>
 
-<%= render 'form', tweet: @tweet %>
-
-<%= link_to 'Back', tweets_path %>
+    <%= link_to 'Back', tweets_path %>
+  </div>
+</div>

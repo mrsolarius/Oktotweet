@@ -517,3 +517,16 @@ ul{
 .media-content{
   display: flex;
 }
+
+.nothingMsgContainer{
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 70px);
+  #monkey{
+    padding: 2rem;
+  }
+  p{
+    text-align: center;
+    font-weight: 800;
+  }
+}
