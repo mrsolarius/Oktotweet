@@ -1,0 +1,31 @@
+<div class="col-flex contentContainer">
+  <img class="avatarImg centerSelft" src="<%= user.imageB64? ? url_for(controller: 'users', action: 'file', id: user.id) : 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=' %>"
+       alt="<%= user.name %>">
+  <div class="col-flex centerSelft">
+    <div class="userBox">
+      <div>
+            <span class="username">
+              <%= user.name %>
+            </span>
+      </div>
+      <div class="col-flex">
+            <span class="login">
+              @<%= user.login %>
+            </span>
+      </div>
+    </div>
+  </div>
+  <div class="centerSelft" style="margin-left:auto;">
+    <% if user_auth!= nil %>
+        <% if user_auth.id != user.id %>
+          <% if user_auth.followings.include?(user) %>
+            <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'unfollow', :controller => :follows, :follow_user_id => user.id) %>'">Ne
+              plus suivre
+            </button>
+          <% else %>
+            <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'follow', :controller => :follows, :follow_user_id => user.id) %>'">Suivre</button>
+          <% end %>
+        <% end %>
+    <% end %>
+  </div>
+</div>

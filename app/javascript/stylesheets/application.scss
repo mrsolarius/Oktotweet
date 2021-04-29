@@ -25,6 +25,14 @@ $xxl:1536px;
   transition: all 330ms ease-out;
 }
 
+a{
+  text-decoration:underline $border;
+  &:hover{
+    text-decoration: underline $primary;
+    color: $primary;
+  }
+}
+
 /** Modal ! **/
 .modal {
   transition: opacity 0.25s ease;
@@ -77,6 +85,12 @@ body.modal-active {
   @media only screen and (max-width : $md) {
     flex-direction: column;
     margin-left: 0rem;
+  }
+  a{
+    text-decoration: none;
+    &:hover{
+      text-decoration: none;
+    }
   }
 }
 

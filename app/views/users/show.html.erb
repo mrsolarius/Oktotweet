@@ -38,25 +38,24 @@
           <h1><%= @user.name %></h1>
           <small>@<%= @user.login %></small>
           <p>
-            <br>
-            <% if @user.bio %>
+            <% if @user.bio != '' %>
+              <br>
               <small>Bio</small>
               <br>
               <span class="description">
               <%= @user.bio %>
+              <br>
             </span>
             <% end %>
-            <br>
             <small>
-              <% if @user.location %>
-                <br>
+              <% if @user.location != ''%>
                 <i class="far fa-map"></i> <%= @user.location %>
-              <% end %>
-              <% if @user.created_at %>
                 <br>
-                <i class="far fa-calendar-alt"></i> <%= @user.created_at %>
               <% end %>
-              <br>
+              <% if @user.created_at != ''%>
+                <i class="far fa-calendar-alt"></i> <%= @user.created_at %>
+                <br>
+              <% end %>
 
               Abonées <strong><%= @user.received_follows.count %></strong> · Abonement
               <strong><%= @user.given_follows.count %></strong>
@@ -64,10 +63,6 @@
             </small>
           </p>
         </div>
-      </div>
-      <div class="flex">
-        <%= link_to 'Edit', edit_user_path(@user) %> |
-        <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Êtes vous sure?' } %>
       </div>
       <div class="profileLink">
         <ul>

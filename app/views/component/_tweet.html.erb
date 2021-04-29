@@ -6,7 +6,7 @@
     </p>
   </figure>
   <div class="media-content">
-    <div class="content" title="lire le tweet" onclick="window.location='<%= url_for(controller:'tweets', action: 'show', id: tweet.id)%>'" style="cursor: pointer;">
+    <div class="content" title="lire le tweet (double click)" ondblclick="window.location='<%= url_for(controller:'tweets', action: 'show', id: tweet.id)%>'" style="cursor: pointer;">
       <p>
         <strong><%=tweet.user.name%></strong>
         <br>
@@ -14,16 +14,20 @@
         <small class="time-lapsed"><%=tweet.created_at%></small>
         <br>
         <span class="description">
-          <%=tweet.tweet%>
+          <%=render_with_hashtags(tweet.tweet)%>
         </span>
       </p>
     </div>
     <div class="tweet-image">
       <!--<img src="/asset/users/10/profile" />-->
     </div>
-    <div>
-      <td><%= link_to 'Supprimer', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </div>
+  </div>
+  <div>
+    <%if @user_auth != nil%>
+      <%if @user_auth.id ==  tweet.user.id%>
+        <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, tweet, method: :delete, data: { confirm: 'Êtes vous sur ?'}, title: 'Suprimer le tweet' %>
+      <%end %>
+    <%end %>
   </div>
 </article>
 </div>

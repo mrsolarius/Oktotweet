@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_171230) do
+ActiveRecord::Schema.define(version: 2021_04_29_151947) do
 
   create_table "follows", force: :cascade do |t|
     t.integer "follower_user_id", null: false
@@ -18,6 +18,22 @@ ActiveRecord::Schema.define(version: 2021_04_28_171230) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["followed_user_id", "follower_user_id"], name: "index_follows_on_followed_user_id_and_follower_user_id", unique: true
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags_tweets", id: false, force: :cascade do |t|
+    t.integer "tweet_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_tags_tweets_on_tag_id"
+    t.index ["tweet_id", "tag_id"], name: "index_tags_tweets_on_tweet_id_and_tag_id", unique: true
+    t.index ["tweet_id"], name: "index_tags_tweets_on_tweet_id"
   end
 
   create_table "tweets", force: :cascade do |t|

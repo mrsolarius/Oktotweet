@@ -37,7 +37,10 @@
     <%= form.file_field 'profile_img',accept: 'image/png,image/gif,image/jpeg,image/svg', style:'border:none'%>
   </div>
 
-  <div class="actions">
+  <div class="actions" style="flex-grow: 1;display: flex;">
     <button type="submit" class="px-4 bg-red-imperial p-3 rounded-lg text-white hover:bg-blue-space">Envoyer</button>
+    <a class="ml-auto" data-confirm="Êtes vous sur ?" title="Êtes vous sur de vouloir suprimer votre compte ?" rel="nofollow" data-method="delete" href="<%=url_for controller: :users, action: 'destroy' %>">
+    <button class="px-4 bg-red-imperial p-3 rounded-lg text-white hover:bg-blue-space" >Suprimer mon compte</button>
+    </a>
   </div>
 <% end %>

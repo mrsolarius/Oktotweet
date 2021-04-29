@@ -1,9 +1,9 @@
 <div class="flew">
   <div class="topbar">
-    <h1>Acceuil</h1>
+    <h1>Hashtag : <%= @hashtag %></h1>
   </div>
   <div class="defilable-thread">
-    <% @tweets.order('created_at DESC').each do |tweet| %>
+    <% @tweets.each do |tweet| %>
       <%= render 'component/tweet', tweet: tweet %>
     <% end %>
   </div>

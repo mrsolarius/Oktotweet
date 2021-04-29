@@ -1,23 +1,15 @@
 <div class="col-flex card">
+  <h1 class="card-title">Populaire</h1>
+  <% popular_hashtag.each do |tag| %>
+      <%=render 'component/hot_hashtag', tag:tag%>
+  <% end %>
+</div>
+
+<div class="col-flex card">
   <h1 class="card-title">Sugesstion</h1>
-  <div class="col-flex contentContainer">
-    <img class="avatarImg centerSelft" src="https://pbs.twimg.com/profile_images/926475544371384320/PwyaFeUl.jpg">
-    <div class="col-flex centerSelft">
-      <div class="userBox">
-        <div>
-                  <span class="username">
-                    MrSolarius
-                  </span>
-        </div>
-        <div class="col-flex">
-                  <span class="login">
-                    @MrSolarius
-                  </span>
-        </div>
-      </div>
-    </div>
-    <div class="centerSelft" style="margin-left:auto;">
-      <button class="btnSecondary">Suivre</button>
-    </div>
-  </div>
+  <% get_most_followed_user.each do |user| %>
+    <%if @user_auth.id != user.id%>
+      <%=render 'component/profile_suggestion', user:user, user_auth:@user_auth %>
+    <% end %>
+  <% end %>
 </div>

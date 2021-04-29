@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get '/', to: 'users#index', as: 'landing'
   resources :tweets
   resources :users
-  get '/following', to: 'tweets#follow_feed', as: 'follow_feed'
-  get '/users/:id/login', to: 'users#login', as: 'login'
+  get '/following/', to: 'tweets#follow_feed', as: 'follow_feed'
+  get '/hashtags/:hashtag', to: 'tweets#hashtag', as: 'hashtag'
+  get '/auth/:id/login', to: 'users#login', as: 'login'
+  get '/auth/logout', to: 'users#logout', as: 'logout'
   get '/users/:id/followers', to: 'users#followers', as: 'followers'
   get '/users/:id/following', to: 'users#following', as: 'following'
   get '/asset/users/:id/profile/', to: 'users#file', as: 'user_profile_img'

@@ -9,6 +9,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    session[:current_user_id] = nil
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: "Vous êtes doconnecter" }
+    end
+  end
+
   # GET /users or /users.json
   def index
     @users = User.all
@@ -68,8 +75,9 @@ class UsersController < ApplicationController
   def destroy
     respond_to do |format|
       if @user.id == auth_user_id
-        @user.tweet.each(&:destroy)
+        @user.tweets.each(&:destroy)
         @user.destroy
+        session[:current_user_id] = nil
         format.html { redirect_to users_url, notice: "Votre compte à était supprimer" }
       else
         format.html { redirect_to tweets_url, notice: 'Vous ne pouvez pas suprimer les compte des autres utilisateurs' }

@@ -2,7 +2,7 @@
   <div class="menu col-flex">
     <ul>
       <li>
-        <a title="Ocktotweet" href="<%= url_for(controller:'tweets', action: 'index')%>">
+        <a title="Ocktotweet" href="<%= url_for(controller: 'tweets', action: 'index') %>">
           <div class="nav-item">
             <svg id="oktotweet" data-name="OktoTweet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 130" width="30" height="30">
               <title>OktoTweet</title>
@@ -16,7 +16,7 @@
         </a>
       </li>
       <li>
-        <a title="Acceuil" href="<%=url_for(controller:'tweets', action: 'index')%>">
+        <a title="Acceuil" href="<%= url_for(controller: 'tweets', action: 'index') %>">
           <div class="nav-item">
             <div class="nav-inner">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -34,7 +34,7 @@
       </li>
       <% if @user_auth != nil %>
         <li>
-          <a href="<%=url_for(controller: 'tweets', action: 'follow_feed', id: @user_auth.id) %>">
+          <a href="<%= url_for(controller: 'tweets', action: 'follow_feed') %>">
             <div class="nav-item">
               <div class="nav-inner">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bookmarks" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -50,7 +50,7 @@
           </a>
         </li>
         <li>
-          <a href="<%=url_for(controller: 'users', action: 'show', id: @user_auth.id) %>">
+          <a href="<%= url_for(controller: 'users', action: 'show', id: @user_auth.id) %>">
 
             <div class="nav-item">
               <div class="nav-inner">
@@ -68,13 +68,13 @@
         </li>
       <% else %>
         <li>
-          <a href="<%=url_for(controller:'users', action: 'index')%>">
+          <a href="<%= url_for(controller: 'users', action: 'index') %>">
             <div class="nav-item">
               <div class="nav-inner">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                  <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"/>
+                  <path d="M20 12h-13l3 -3m0 6l-3 -3"/>
                 </svg>
               </div>
               <div class="nav-inner title">
@@ -96,36 +96,44 @@
         </svg>
         <span>Octweets</span></button>
     </div>
-  <%end %>
+  <% end %>
 </div>
 <% if @user_auth != nil %>
   <div class="col-flex leftPann userProfile" style="margin-top:auto;">
-    <a class="col-flex contentContainer" href="<%=url_for(controller: 'users', action: 'show', id: @user_auth.id) %>">
-      <div class="col-flex centerContent">
-        <img class="avatarImg" src="<%= @user_auth.imageB64? ? url_for(controller: 'users', action: 'file', id: @user_auth.id) : 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='%>">
+    <div class="col-flex contentContainer">
+      <div class="col-flex centerContent" style="display: grid">
+        <img class="avatarImg" src="<%= @user_auth.imageB64? ? url_for(controller: 'users', action: 'file', id: @user_auth.id) : 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=' %>">
       </div>
       <div class="col-flex centerSelft accountToHide">
         <div class="userBox">
           <div>
             <span class="username">
-              <%=@user_auth.name %>
+              <%= @user_auth.name %>
             </span>
           </div>
           <div class="col-flex">
             <span class="login">
-              @<%=@user_auth.login %>
+              @<%= @user_auth.login %>
             </span>
           </div>
         </div>
       </div>
-      <div class="col-flex centerSelft accountToHide" style="margin-left:auto">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <circle cx="5" cy="12" r="1"/>
-          <circle cx="12" cy="12" r="1"/>
-          <circle cx="19" cy="12" r="1"/>
-        </svg>
+      <div class="dropdown" style="display: grid;">
+        <button class="dropbtn col-flex centerSelft accountToHide" style="margin-left:auto;">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <circle cx="5" cy="12" r="1"/>
+            <circle cx="12" cy="12" r="1"/>
+            <circle cx="19" cy="12" r="1"/>
+          </svg>
+        </button>
+        <div class="dropdown-content">
+          <%= link_to 'Mon profile', @user_auth, controller: 'users', action: 'show' %>
+          <%= link_to 'Se deconnecter', controller: 'users', action: 'logout' %>
+        </div>
+        <div class="dropdown">
+        </div>
       </div>
-    </a>
+    </div>
   </div>
-<%end %>
+<% end %>

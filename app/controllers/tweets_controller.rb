@@ -1,28 +1,37 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :set_session
+  before_action :set_tweet, only: %i[ show edit update destroy]
 
   # GET /tweets or /tweets.json
   def index
-    @user_auth = auth_user
     @tweets = Tweet.all
+  end
+
+  def follow_feed
+    @tweets = []
+    if !@user_auth.nil?
+      Tweet.all.order('created_at DESC').each do |tweet|
+        @tweets << tweet if @user_auth.followings.include?(tweet.user)
+      end
+    else
+      raise ActionController::MethodNotAllowed, 'Not Allowed'
+    end
+  end
+
+  def hashtag
+    tag = Tag.find_by(name: params[:hashtag])
+    @tweets = tag.tweets
+    @hashtag = tag.name
   end
 
   # GET /tweets/1 or /tweets/1.json
   def show
   end
-
-  def follow_feed
-    @user_auth = auth_user
-    @tweets = []
-    Tweet.all.order('created_at DESC').each do |tweet|
-      @tweets << tweet if @user_auth.followings.include?(tweet.user)
-    end
-  end
+  
   # GET /tweets/new
   def new
     @tweet = Tweet.new
   end
-
 
   # POST /tweets or /tweets.json
   def create
@@ -65,10 +74,12 @@ class TweetsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_tweet
-    @user_auth = auth_user
     @tweet = Tweet.find(params[:id])
   end
 
+  def set_session
+    @user_auth = auth_user
+  end
   # Only allow a list of trusted parameters through.
   def tweet_params
     @tweet_parms = params.require(:tweet).permit(:tweet)

@@ -3,9 +3,8 @@
     <h1>Abonement</h1>
   </div>
   <div class="defilable-thread">
-
-  <% @tweets.each do |tweet| %>
+    <% @tweets.each do |tweet| %>
       <%= render 'component/tweet', tweet: tweet %>
-  <% end %>
+    <% end %>
   </div>
 </div>
