@@ -75,8 +75,9 @@ rails -v
 #### installer node, npm et yarn:
 ```sh
 sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - sudo apt -y install 
-sudo apt -y install nodejs
+wget -qO- https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get update
+sudo apt install -y nodejs
 sudo npm install -g npm
 sudo npm install -g yarn
 ```
@@ -92,12 +93,20 @@ cd Oktotweet/
 ```
 
 Executer les commandes suivantes :
+Installation des dépendance
 ```sh
 yarn install
 bundle install
+```
+Installation de webpack (**ne pas override les fichier !**)
+```sh
+bundle exec rails webpacker:install
+```
+
+Lancement des migration puis démarge du server
+```sh
 rake db:migrate
 rake db:seed
-bundle exec rails webpacker:install:react
 bin/rails server
 ```
 Puis connectez-vous à votre navigateur avec l'adresse :
