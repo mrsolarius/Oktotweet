@@ -88,7 +88,7 @@ git clone https://github.com/mrsolarius/Oktotweet.git
 
 Placer vous dans le dossier Oktotweet
 ```shell
-cd Oktotweet
+cd Oktotweet/
 ```
 
 Executer les commandes suivantes :
