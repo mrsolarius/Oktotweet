@@ -17,7 +17,7 @@
     <div class="profile">
       <div class="profileShow">
         <div class="topProfileContainer">
-          <img src="<%= url_for(:action => 'file', :id => @user.id) %>">
+          <img src="<%= @user.imageB64? ? url_for(controller: 'users', action: 'file', id: @user.id) : 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=' %>">
           <% if @user_auth != nil %>
             <% if @user_auth.id == @user.id %>
               <button class="btnSecondary" onclick="window.location='<%=url_for(:action => 'edit', :id => @user.id) %>'">Editer
@@ -57,7 +57,7 @@
                 <br>
               <% end %>
 
-              Abonées <strong><%= @user.received_follows.count %></strong> · Abonement
+              Abonnés <strong><%= @user.received_follows.count %></strong> · Abonnements
               <strong><%= @user.given_follows.count %></strong>
 
             </small>
@@ -70,10 +70,10 @@
             <a class="<%= action_name == 'show' ? 'selected' : nil %>" href="<%= url_for(controller: 'users', action: 'show', id: @user.id) %>">Tweet</a>
           </li>
           <li>
-            <a class="<%= action_name == 'following' ? 'selected' : nil %>" href="<%= url_for(controller: 'users', action: 'following', id: @user.id) %>">Abonemment</a>
+            <a class="<%= action_name == 'following' ? 'selected' : nil %>" href="<%= url_for(controller: 'users', action: 'following', id: @user.id) %>">Abonnements</a>
           </li>
           <li>
-            <a class="<%= action_name == 'followers' ? 'selected' : nil %>" href="<%= url_for(controller: 'users', action: 'followers', id: @user.id) %>">Abonné</a>
+            <a class="<%= action_name == 'followers' ? 'selected' : nil %>" href="<%= url_for(controller: 'users', action: 'followers', id: @user.id) %>">Abonnés</a>
           </li>
         </ul>
       </div>
@@ -83,7 +83,7 @@
         <div class="nothingMsgContainer" style="height: 40vh;
           transform: translateY(-3rem);">
           <h1 style="text-align: center">Rhooo !</h1>
-          <p>L'utilisateur na encore jammais tweeter...</p>
+          <p>L'utilisateur n'a encore jamais OktoTweeté...</p>
           <svg id="monkey" viewBox="0 0 490 525">
             <path fill="#6A1B9A" d="M325 85c1 12-1 25-5 38-8 29-31 52-60 61-26 8-54 14-81 18-37 6-26-37-38-72l-4-4c0-17-9-33 4-37l33-4c9-2 9-21 11-30 1-7 3-14 5-21 8-28 40-42 68-29 18 9 36 19 50 32 13 11 16 31 17 48z"></path>
             <path fill="none" stroke="#6A1B9A" stroke-width="24" stroke-linecap="round" stroke-miterlimit="10" d="M431 232c3 15 21 19 34 11 15-9 14-30 5-43-12-17-38-25-59-10-23 18-27 53-21 97s1 92-63 108"></path>

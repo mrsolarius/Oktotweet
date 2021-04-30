@@ -7,6 +7,6 @@ class Follow < ApplicationRecord
   private
 
   def cant_self_follow
-    errors.add(%i[follower followed_user], 'Imposible de vous auto follow') if follower == followed_user
+    errors.add(:followed_user, 'Impossible de vous auto follow') if follower == followed_user
   end
 end

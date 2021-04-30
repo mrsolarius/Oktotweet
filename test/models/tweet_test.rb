@@ -21,7 +21,7 @@ class TweetTest < ActiveSupport::TestCase
   end
 
   test 'tweet avec texte un caractère' do
-    tweet = Tweet.new(tweet: '&', user: @user)
+    tweet = Tweet.new(tweet: '#', user: @user)
     assert_equal(tweet.save, true)
   end
 

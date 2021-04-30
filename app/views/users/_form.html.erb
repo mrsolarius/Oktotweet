@@ -1,7 +1,7 @@
 <%= form_for(:user, :html => {:multipart => true },url: { action: form_action }, method: form_method) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(user.errors.count, "error") %> a interdit la mise à jour de votre compte:</h2>
 
       <ul>
         <% user.errors.each do |error| %>
@@ -39,8 +39,8 @@
 
   <div class="actions" style="flex-grow: 1;display: flex;">
     <button type="submit" class="px-4 bg-red-imperial p-3 rounded-lg text-white hover:bg-blue-space">Envoyer</button>
-    <a class="ml-auto" data-confirm="Êtes vous sur ?" title="Êtes vous sur de vouloir suprimer votre compte ?" rel="nofollow" data-method="delete" href="<%=url_for controller: :users, action: 'destroy' %>">
-    <button class="px-4 bg-red-imperial p-3 rounded-lg text-white hover:bg-blue-space" >Suprimer mon compte</button>
+    <a class="ml-auto" data-confirm="Êtes-vous sûr ?" title="Êtes-vous sûr de vouloir supprimer votre compte ?" rel="nofollow" data-method="delete" href="<%=url_for controller: :users, action: 'destroy' %>">
+    <button class="px-4 bg-red-imperial p-3 rounded-lg text-white hover:bg-blue-space" >Supprimer mon compte</button>
     </a>
   </div>
 <% end %>

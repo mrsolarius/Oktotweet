@@ -5,7 +5,7 @@ class FollowsController < ActionController::Base
   def follow
     # if not authenticate can't follow raise 400 error
     if @user_auth.nil?
-      raise ActionController::MethodNotAllowed, 'Not Allowed'
+      raise ActionController::MethodNotAllowed, 'Vous n\'êtes pas connecté'
     elsif @user_auth.id != @user_followed.id
       follow = Follow.new(follower_user_id: @user_auth.id, followed_user_id: @user_followed.id)
       if follow.save
@@ -21,7 +21,7 @@ class FollowsController < ActionController::Base
   # unfollow user if authenticate
   def unfollow
     if @user_auth.nil?
-      raise ActionController::MethodNotAllowed, 'Not Allowed'
+      raise ActionController::MethodNotAllowed, 'Vous n\'êtes pas connecté'
     elsif @user_auth.id != @user_followed.id
       follow = Follow.find_by(follower_user_id: @user_auth.id, followed_user_id:@user_followed.id)
       if follow.destroy
@@ -30,7 +30,7 @@ class FollowsController < ActionController::Base
         redirect_back fallback_location: '/', error: "Impossible de follow l'utilisateur"
       end
     else
-      redirect_back fallback_location: '/', error: 'Vous ne pouvez pas vous auto follow'
+      redirect_back fallback_location: '/', error: 'Vous ne pouvez pas vous auto unfollow'
     end
   end
 

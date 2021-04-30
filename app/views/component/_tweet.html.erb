@@ -1,6 +1,6 @@
 <div class="tweet">
 <article class="media">
-  <figure class="media-left" title="acéder au profile" style="cursor: pointer;" onclick="window.location='<%= url_for(controller:'users', action: 'show', id: tweet.user.id)%>'">
+  <figure class="media-left" title="accéder au profile" style="cursor: pointer;" onclick="window.location='<%= url_for(controller:'users', action: 'show', id: tweet.user.id)%>'">
     <p class="image is-64x64">
       <img class="user-image" src="<%= url_for(controller:'users', action: 'file', id: tweet.user.id)%>">
     </p>
@@ -14,7 +14,7 @@
         <small class="time-lapsed"><%=tweet.created_at%></small>
         <br>
         <span class="description">
-          <%=render_with_hashtags(tweet.tweet)%>
+          <%= format_tweet_body(tweet.tweet)%>
         </span>
       </p>
     </div>

@@ -44,7 +44,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    raise ActionController::MethodNotAllowed, 'Not Allowed' unless @user.id == auth_user_id
+    unless @user.id == auth_user_id
+      raise ActionController::MethodNotAllowed, 
+            'Vous n\'êtes pas connecté ou vous tenter d\'éditer le compte d\'un autre utilisateur'
+    end
   end
 
   # POST /users
@@ -52,7 +55,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "L'utilisateur à bien était crée." }
+        format.html { redirect_to @user, notice: "L'utilisateur a bien été créé." }
       else
         @users = User.all
         format.html { render :index, status: :unprocessable_entity }
@@ -65,12 +68,12 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.id == auth_user_id
         if @user.update(user_params)
-          format.html { redirect_to @user, notice: "L'utilisateur à était mis à jour" }
+          format.html { redirect_to @user, notice: "L'utilisateur a été mis à jour" }
         else
           format.html { render :edit, status: :unprocessable_entity }
         end
       else
-        format.html { redirect_to tweets_url, notice: 'Vous ne pouvez pas modifier les autres utilisateur' }
+        format.html { redirect_to tweets_url, notice: 'Vous ne pouvez pas modifier les autres utilisateurs' }
       end
     end
   end
@@ -82,9 +85,9 @@ class UsersController < ApplicationController
         @user.tweets.each(&:destroy)
         @user.destroy
         session[:current_user_id] = nil
-        format.html { redirect_to users_url, notice: "Votre compte à était supprimer" }
+        format.html { redirect_to users_url, notice: "Votre compte a été supprimer" }
       else
-        format.html { redirect_to tweets_url, notice: 'Vous ne pouvez pas suprimer les compte des autres utilisateurs' }
+        format.html { redirect_to tweets_url, notice: 'Vous ne pouvez pas supprimer les comptes des autres utilisateurs' }
       end
     end
   end
@@ -94,7 +97,7 @@ class UsersController < ApplicationController
     if @user.imageB64?
       send_data(@user.imageB64, filename: @user.imageName, disposition: 'inline')
     else
-      raise ActionController::RoutingError, 'Not Found'
+      raise ActionController::RoutingError, 'Introuvable'
     end
   end
 

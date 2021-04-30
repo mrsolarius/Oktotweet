@@ -1,9 +1,18 @@
 module TweetsHelper
   # replace every # by link to the hashtag
-  def render_with_hashtags(body)
-    body.gsub(/#\w+/)do |word|
+  def format_tweet_body(body)
+    body = simple_format(body)
+    body = body.gsub(/#\w+/)do |word|
       link_to word, controller: :tweets, action: 'hashtag', hashtag: word.downcase.delete('#')
     end.html_safe
+    body.gsub(/@\w+/)do |word|
+      if !User.find_by(login:word.delete('@')).nil?
+        link_to word, controller: :users, action: 'show', id: User.find_by(login: word.delete('@')).id
+      else
+        word
+      end
+    end.html_safe
+
   end
 
   # get most popular hashtags

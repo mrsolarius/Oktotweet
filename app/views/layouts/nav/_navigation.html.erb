@@ -2,7 +2,7 @@
   <div class="menu col-flex">
     <ul>
       <li>
-        <a title="Ocktotweet" href="<%= url_for(controller: 'tweets', action: 'index') %>">
+        <a title="OktoTweet" href="<%= url_for(controller: 'tweets', action: 'index') %>">
           <div class="nav-item">
             <svg id="oktotweet" data-name="OktoTweet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 130" width="30" height="30">
               <title>OktoTweet</title>
@@ -27,7 +27,7 @@
               </svg>
             </div>
             <div class="nav-inner title">
-              Acceuil
+              Accueil
             </div>
           </div>
         </a>
@@ -44,7 +44,7 @@
                 </svg>
               </div>
               <div class="nav-inner title">
-                Suivit
+                Suivi
               </div>
             </div>
           </a>
@@ -94,7 +94,7 @@
           <line x1="10" y1="14" x2="21" y2="3"/>
           <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5"/>
         </svg>
-        <span>Octweets</span></button>
+        <span>OktoTweet</span></button>
     </div>
   <% end %>
 </div>
@@ -128,8 +128,8 @@
           </svg>
         </button>
         <div class="dropdown-content">
-          <%= link_to 'Mon profile', @user_auth, controller: 'users', action: 'show' %>
-          <%= link_to 'Se deconnecter', controller: 'users', action: 'logout' %>
+          <%= link_to 'Mon profil', @user_auth, controller: 'users', action: 'show' %>
+          <%= link_to 'Se déconnecter', controller: 'users', action: 'logout' %>
         </div>
         <div class="dropdown">
         </div>

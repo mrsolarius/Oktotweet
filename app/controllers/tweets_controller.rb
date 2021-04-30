@@ -15,13 +15,13 @@ class TweetsController < ApplicationController
         @tweets << tweet if @user_auth.followings.include?(tweet.user)
       end
     else
-      raise ActionController::MethodNotAllowed, 'Not Allowed'
+      raise ActionController::MethodNotAllowed, 'Veuillez vous connecter'
     end
   end
 
   # GET /hashtags/:hashtag
   def hashtag
-    tag = Tag.find_by(name: params[:hashtag])
+    tag = Tag.order('created_at DESC').find_by(name: params[:hashtag])
     if !tag.nil?
       @tweets = tag.tweets
       @hashtag = tag.name
@@ -45,7 +45,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        format.html { redirect_to @tweet, notice: 'L\'OktoTweet a bien été créé' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -58,10 +58,10 @@ class TweetsController < ApplicationController
     respond_to do |format|
       if @tweet.user.id == auth_user_id
         @tweet.destroy
-        format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
+        format.html { redirect_to tweets_url, notice: 'L\OktoTweet a bien été supprimer.' }
       else
         @tweets = Tweet.all
-        format.html { redirect_to tweets_url, notice: 'Vous ne pouvez pas supprimer les tweet des autres' }
+        format.html { redirect_to tweets_url, notice: 'Vous ne pouvez pas supprimer les tweets des autres utilisateurs' }
       end
     end
   end
