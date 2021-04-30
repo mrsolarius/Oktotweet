@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   layout :resolve_layout
   before_action :set_user, only: %i[login show following followers edit update destroy file]
 
+  # Login methode store user id in session
   def login
     session[:current_user_id] = @user.id
     respond_to do |format|
@@ -9,6 +10,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Logout methode to delete user id in session
   def logout
     session[:current_user_id] = nil
     respond_to do |format|
@@ -25,10 +27,12 @@ class UsersController < ApplicationController
   # GET /users/1
   def show; end
 
+  # GET /user/1/following
   def following
     render 'show'
   end
 
+  # GET /user/1/follower
   def followers
     render 'show'
   end
@@ -109,7 +113,7 @@ class UsersController < ApplicationController
 
   def resolve_layout
     case action_name
-    when "new", "create","index"
+    when "new", "create", "index"
       "default"
     else
       "application"

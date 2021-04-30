@@ -1,5 +1,6 @@
 module UsersHelper
 
+  # get users with mos followers
   def get_most_followed_user
     User.find_by_sql('SELECT users.*
                       FROM

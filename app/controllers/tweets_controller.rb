@@ -2,11 +2,12 @@ class TweetsController < ApplicationController
   before_action :set_session
   before_action :set_tweet, only: %i[ show edit update destroy]
 
-  # GET /tweets or /tweets.json
+  # GET /tweets
   def index
     @tweets = Tweet.all
   end
 
+  # GET /following/
   def follow_feed
     @tweets = []
     if !@user_auth.nil?
@@ -18,13 +19,19 @@ class TweetsController < ApplicationController
     end
   end
 
+  # GET /hashtags/:hashtag
   def hashtag
     tag = Tag.find_by(name: params[:hashtag])
-    @tweets = tag.tweets
-    @hashtag = tag.name
+    if !tag.nil?
+      @tweets = tag.tweets
+      @hashtag = tag.name
+    else
+      @tweets = []
+      @hashtag = params[:hashtag]
+    end
   end
 
-  # GET /tweets/1 or /tweets/1.json
+  # GET /tweets/1
   def show
   end
   
@@ -33,7 +40,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
 
-  # POST /tweets or /tweets.json
+  # POST /tweets
   def create
     @tweet = Tweet.new(tweet_params)
     respond_to do |format|
@@ -45,18 +52,7 @@ class TweetsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tweets/1 or /tweets/1.json
-  def update
-    respond_to do |format|
-      if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully updated.' }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /tweets/1 or /tweets/1.json
+  # DELETE /tweets/1
   def destroy
 
     respond_to do |format|

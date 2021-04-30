@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   validates :location, length: { maximum: 30 }
 
+  # Will return an array of tweets written by user
   has_many :tweets, foreign_key: :user_id, class_name: 'Tweet'
 
   # Will return an array of follows for the given user instance
