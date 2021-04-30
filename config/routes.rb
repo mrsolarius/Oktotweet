@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get '/', to: 'users#index', as: 'landing'
   resources :tweets, except: :edit
   # user creation include in index view
-  resources :users, except: %i[new]
+  resources :users, except: :new
   # to see the followers of user
   get '/users/:id/followers', to: 'users#followers', as: 'followers'
   # to see people who follow user
