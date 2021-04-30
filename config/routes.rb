@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  # root page is index of users
   get '/', to: 'users#index', as: 'landing'
+  # can't edit tweet
   resources :tweets, except: :edit
   # user creation include in index view
   resources :users, except: :new
