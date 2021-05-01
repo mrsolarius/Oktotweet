@@ -8,8 +8,12 @@
 <div class="col-flex card">
   <h1 class="card-title">Suggestion</h1>
   <% get_most_followed_user.each do |user| %>
-    <%if @user_auth.id != user.id%>
-      <%=render 'component/profile_suggestion', user:user, user_auth:@user_auth %>
-    <% end %>
+    <%if @user_auth != nil%>
+      <%if @user_auth.id != user.id%>
+        <%=render 'component/profile_suggestion', user:user, user_auth:@user_auth %>
+      <% end %>
+    <%else %>
+      <%=render 'component/profile_suggestion', user:user, user_auth:nil %>
+    <%end %>
   <% end %>
 </div>
